@@ -1,38 +1,101 @@
-/* // Voorbeeld JS code om te converteren naar TypeScript
-function add(a, b) {
-    return a + b;
+/* // Functie om Celsius naar Fahrenheit om te zetten
+function celsiusToFahrenheit(celsius: number): number {
+    return (celsius * 9) / 5 + 32;
 }
 
-// Geconverteerde TypeScript code met types toegevoegd
-function add(a: number, b: number): number {
-    return a + b;
-} */
-
-
-/* // Originele functie in JavaScript
-function createUser(name, age) {
-    const isAdmin = false;
-    return { name, age, isAdmin };
+// Functie om Fahrenheit naar Celsius om te zetten
+function fahrenheitToCelsius(fahrenheit: number): number {
+    return ((fahrenheit - 32) * 5) / 9;
 }
 
-// Geconverteerde TypeScript functie met een overschrijfbare default parameter
-function createUser(name: string, age: number, isAdmin: boolean = false): { name: string, age: number, isAdmin: boolean } {
-    return { name, age, isAdmin };
+// Functie om de gemiddelde temperatuur te berekenen
+function calculateAverageTemperature(temperatures: number[]): number {
+    let total = 0;
+    for (let temp of temperatures) {
+        total += temp;
+    }
+    return total / temperatures.length;
 }
 
-// Test
-const user1 = createUser('Alice', 25); // isAdmin is default false
-const user2 = createUser('Bob', 30, true); // isAdmin is true */
+// Testcode
+const temps: number[] = [20, 25, 30, 22, 18];
+console.log(`Gemiddelde temperatuur: ${calculateAverageTemperature(temps)}°C`);
+console.log(`25°C in Fahrenheit: ${celsiusToFahrenheit(25)}°F`);
+console.log(`77°F in Celsius: ${fahrenheitToCelsius(77)}°C`); */
 
-/* // Voorbeeld JavaScript code
-function greet(name) {
-    return `Hello, ${name}`;
+
+/* // Gebruiker interface voor type safety
+interface User {
+    username: string;
+    email: string;
+    age: number;
+    isAdmin: boolean;
 }
 
-// TypeScript met types
-function greet(name: string): string {
-    return `Hello, ${name}`;
-} */
+// Voorbeeld gebruiker object
+const user: User = {
+    username: "johnDoe",
+    email: "john@example.com",
+    age: 25,
+    isAdmin: false,
+};
+
+// Functie om een nieuwe gebruiker aan te maken
+function createUser(username: string, email: string, age: number): User {
+    return {
+        username,
+        email,
+        age,
+        isAdmin: false, // Default waarde
+    };
+}
+
+// Functie om te controleren of de gebruiker een admin is
+function isAdmin(user: User): string {
+    return user.isAdmin ? `${user.username} is een admin.` : `${user.username} is geen admin.`;
+}
+
+// Testcode
+const newUser: User = createUser("janeDoe", "jane@example.com", 22);
+console.log(isAdmin(newUser)); */
+
+/* // Product interface voor type safety
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+}
+
+// Voorbeeld product object
+const product: Product = {
+    id: 1,
+    name: "Laptop",
+    price: 1200,
+    quantity: 1
+};
+
+// Functie om producten aan de winkelwagen toe te voegen
+function addToCart(cart: Product[], product: Product): Product[] {
+    cart.push(product);
+    return cart;
+}
+
+// Functie om de totale prijs van de winkelwagen te berekenen
+function calculateTotal(cart: Product[]): number {
+    let total = 0;
+    for (let item of cart) {
+        total += item.price * item.quantity;
+    }
+    return total;
+}
+
+// Testcode
+const cart: Product[] = [];
+addToCart(cart, product);
+console.log(`Totale prijs: €${calculateTotal(cart)}`); */
+
+
 
 /* // Enum voor richting
 enum Direction {
